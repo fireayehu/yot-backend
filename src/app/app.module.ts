@@ -23,6 +23,7 @@ import { AppService } from './app.service';
         entities: [path.join(__dirname, './entities/*.{ts,js}')],
         migrations: [path.join(__dirname, '../migrations/*.{ts,js}')],
         synchronize: false,
+        logging: false,
       }),
       inject: [ConfigService],
     }),
