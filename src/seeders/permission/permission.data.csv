@@ -39,6 +39,14 @@ Create, create_datalookup, Data Lookup
 Read, read_datalookup, Data Lookup
 Update, update_datalookup, Data Lookup
 Delete, delete_datalookup, Data Lookup
+Create, create_educationfield, Education Field
+Read, read_educationfield, Education Field
+Update, update_educationfield, Education Field
+Delete, delete_educationfield, Education Field
+Create, create_educationlevel, Education Level
+Read, read_educationlevel, Education Level
+Update, update_educationlevel, Education Level
+Delete, delete_educationlevel, Education Level
 Create, create_enrolment, Enrolment
 Read, read_enrolment, Enrolment
 Update, update_enrolment, Enrolment
@@ -111,6 +119,10 @@ Create, create_section, Section
 Read, read_section, Section
 Update, update_section, Section
 Delete, delete_section, Section
+Create, create_service, Service
+Read, read_service, Service
+Update, update_service, Service
+Delete, delete_service, Service
 Create, create_session, Session
 Read, read_session, Session
 Update, update_session, Session
