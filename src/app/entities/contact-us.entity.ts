@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { Abstract } from './abstract.entity';
-import { DataLookup } from './data-lookup.entity';
+import { Service } from './service.entity';
 
 @Entity()
 export class ContactUs extends Abstract {
@@ -21,6 +21,6 @@ export class ContactUs extends Abstract {
   @Column()
   message: string;
 
-  @ManyToOne(() => DataLookup)
-  service: DataLookup;
+  @ManyToOne(() => Service)
+  service: Service;
 }

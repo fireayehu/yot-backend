@@ -1,7 +1,8 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { DecimalTransformer } from '../shared/transformers/decimal.transformer';
 import { Abstract } from './abstract.entity';
-import { DataLookup } from './data-lookup.entity';
+import { EducationField } from './education-field.entity';
+import { EducationLevel } from './education-level.entity';
 import { User } from './user.entity';
 
 @Entity()
@@ -9,11 +10,11 @@ export class Instructor extends Abstract {
   @Column()
   educationPlace: string;
 
-  @ManyToOne(() => DataLookup)
-  educationField: DataLookup;
+  @ManyToOne(() => EducationField)
+  educationField: EducationField;
 
-  @ManyToOne(() => DataLookup)
-  educationLevel: DataLookup;
+  @ManyToOne(() => EducationLevel)
+  educationLevel: EducationLevel;
 
   @Column({
     default: 0,
