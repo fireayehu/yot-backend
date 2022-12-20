@@ -1,4 +1,4 @@
-import { Entity, Index, ManyToOne } from 'typeorm';
+import { Column, Entity, Index, ManyToOne } from 'typeorm';
 import { Abstract } from './abstract.entity';
 import { Permission } from './permission.entity';
 import { Role } from './role.entity';
@@ -11,4 +11,9 @@ export class RolePermission extends Abstract {
 
   @ManyToOne(() => Permission)
   permission: Permission;
+
+  @Column({
+    default: false,
+  })
+  granted: boolean;
 }
