@@ -19,7 +19,7 @@ export class RoleSeeder implements Seeder {
 
     fs.createReadStream(path.join(__dirname, 'role.data.csv'))
       .pipe(parse({ delimiter: ',', from_line: 2, trim: true }))
-      .on('data', async (row: string[]) => {
+      .on('data', (row: string[]) => {
         if (row[0]) {
           const type = types.find((type) => type.value === row[1]);
           roles.push(
