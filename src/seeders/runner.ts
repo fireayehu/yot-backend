@@ -6,6 +6,7 @@ import * as dotenv from 'dotenv';
 import { ResourceSeeder } from './resource/resource.seeder';
 import { PermissionSeeder } from './permission/permission.seeder';
 import { DataLookupSeeder } from './data-lookup/data-lookup.seeder';
+import { RoleSeeder } from './role/role.seeder';
 
 dotenv.config({
   path: '.env.migration',
@@ -28,7 +29,7 @@ const env = cleanEnv(process.env, {
     password: env.DATABASE_PASSWORD,
     database: env.DATABASE_NAME,
     entities: [path.join(__dirname, '../app/entities/*.ts')],
-    seeds: [DataLookupSeeder, ResourceSeeder, PermissionSeeder],
+    seeds: [DataLookupSeeder, ResourceSeeder, PermissionSeeder, RoleSeeder],
   };
 
   const dataSource = new DataSource(options);

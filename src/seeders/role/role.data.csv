@@ -1,0 +1,4 @@
+Name, Type, Description
+Super Admin, role_type_superadmin, This is a role for super admin user
+User, role_type_user, This is a role for user
+Instructor, role_type_instructor, This is a role for instructor user

@@ -7,8 +7,9 @@ duration_unit, duration_week, DURATION
 duration_unit, duration_month, DURATION
 duration_unit, duration_year, DURATION
 role_type, role_type_superadmin, ROLE
-role_type, role_type_student, ROLE
+role_type, role_type_user, ROLE
 role_type, role_type_instructor, ROLE
+role_type, role_type_custom, ROLE
 object_state, object_state_draft, OBJECT_STATE
 object_state, object_state_active, OBJECT_STATE
 object_state, object_state_inactive, OBJECT_STATE
