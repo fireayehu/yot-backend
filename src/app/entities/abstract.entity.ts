@@ -11,21 +11,6 @@ export abstract class Abstract {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({
-    nullable: true,
-  })
-  slug: string;
-
-  @Column({
-    nullable: true,
-  })
-  index: number;
-
-  @Column({
-    nullable: true,
-  })
-  remark: string;
-
   @ManyToOne(() => DataLookup)
   state: DataLookup;
 
