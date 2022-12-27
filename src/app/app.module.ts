@@ -5,6 +5,7 @@ import * as path from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './features/account/auth/auth.module';
+import { PermissionModule } from './features/account/permission/permission.module';
 import { DataLookupModule } from './features/data-lookup/data-lookup.module';
 
 @Module({
@@ -31,6 +32,7 @@ import { DataLookupModule } from './features/data-lookup/data-lookup.module';
     }),
     AuthModule,
     DataLookupModule,
+    PermissionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
