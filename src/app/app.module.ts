@@ -8,6 +8,7 @@ import { AuthModule } from './features/account/auth/auth.module';
 import { PermissionModule } from './features/account/permission/permission.module';
 import { RoleModule } from './features/account/role/role.module';
 import { DataLookupModule } from './features/data-lookup/data-lookup.module';
+import { EmployeeModule } from './features/employee/employee.module';
 import { UserModule } from './features/user/user.module';
 
 @Module({
@@ -37,6 +38,7 @@ import { UserModule } from './features/user/user.module';
     PermissionModule,
     RoleModule,
     UserModule,
+    EmployeeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

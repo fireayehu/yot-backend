@@ -22,13 +22,15 @@ export class PermissionSeeder implements Seeder {
             (resource) => resource.name === row[2],
           );
 
-          permissions.push(
-            repository.create({
-              name: row[0],
-              code: row[1],
-              resource,
-            }),
-          );
+          if (resource) {
+            permissions.push(
+              repository.create({
+                name: row[0],
+                code: row[1],
+                resource,
+              }),
+            );
+          }
         }
       })
       .on('end', async () => {

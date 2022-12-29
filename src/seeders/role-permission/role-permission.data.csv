@@ -139,3 +139,7 @@ create_user, Y, Y, Y
 read_user, Y, Y, Y 
 update_user, Y, Y, Y 
 delete_user, Y, Y, Y 
+create_employee, Y, Y, Y 
+read_employee, Y, Y, Y 
+update_employee, Y, Y, Y 
+delete_employee, Y, Y, Y 

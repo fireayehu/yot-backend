@@ -28,7 +28,7 @@ export class UserController {
 
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.ROLE_READ),
+    permissions.includes(PermissionType.USER_READ),
   )
   @UseGuards(JwtAuthGuard)
   @Get()
@@ -42,7 +42,7 @@ export class UserController {
 
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.ROLE_READ),
+    permissions.includes(PermissionType.USER_READ),
   )
   @UseGuards(JwtAuthGuard)
   @Get(':id')
@@ -52,7 +52,7 @@ export class UserController {
 
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.ROLE_CREATE),
+    permissions.includes(PermissionType.USER_CREATE),
   )
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -62,7 +62,7 @@ export class UserController {
 
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.ROLE_UPDATE),
+    permissions.includes(PermissionType.USER_UPDATE),
   )
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
