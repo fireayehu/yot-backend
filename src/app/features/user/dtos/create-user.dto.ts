@@ -1,6 +1,13 @@
-import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUUID,
+} from 'class-validator';
+import { DataLookup } from 'src/app/entities/data-lookup.entity';
 
-export class SignUpDto {
+export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
   firstName: string;
@@ -21,11 +28,11 @@ export class SignUpDto {
   @IsString()
   phoneNumber: string;
 
-  @IsNotEmpty()
-  @IsString()
-  password: string;
-
   @IsOptional()
   @IsString()
   profilePicture: string;
+
+  @IsNotEmpty()
+  @IsUUID()
+  state: DataLookup;
 }

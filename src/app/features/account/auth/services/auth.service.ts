@@ -93,6 +93,8 @@ export class AuthService {
       if (err.code === '23505') {
         if (err.detail.includes('email')) {
           throw new ConflictException('Email address already exists');
+        } else if (err.detail.includes('phoneNumber')) {
+          throw new ConflictException('Phone number already exists');
         }
       }
       throw err;

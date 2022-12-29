@@ -16,6 +16,17 @@ export class User extends Abstract {
   @Index({ unique: true })
   email: string;
 
+  @Column({
+    nullable: true,
+  })
+  countryCode: string;
+
+  @Column({
+    nullable: true,
+  })
+  @Index({ unique: true })
+  phoneNumber: string;
+
   @Column()
   password: string;
 
