@@ -39,6 +39,10 @@ create_datalookup, Y, Y, Y
 read_datalookup, Y, Y, Y 
 update_datalookup, Y, Y, Y 
 delete_datalookup, Y, Y, Y 
+create_educationplace, Y, Y, Y 
+read_educationplace, Y, Y, Y 
+update_educationplace, Y, Y, Y 
+delete_educationplace, Y, Y, Y 
 create_educationfield, Y, Y, Y 
 read_educationfield, Y, Y, Y 
 update_educationfield, Y, Y, Y 

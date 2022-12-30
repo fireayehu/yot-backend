@@ -9,14 +9,14 @@ import { User } from 'src/app/entities/user.entity';
 import { RoleType } from 'src/app/features/data-lookup/enums/data-lookup.enum';
 import { IFilter } from 'src/app/shared/interfaces/filter.interface';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from '../dtos/create-user.dto';
-import { UpdateUserDto } from '../dtos/update-user.dto';
+import { CreateInstructorDto } from '../dtos/create-instructor.dto';
+import { UpdateInstructorDto } from '../dtos/update-instructor.dto';
 import * as bcrypt from 'bcrypt';
 import { customAlphabet } from 'nanoid/async';
 import { alphanumeric } from 'nanoid-dictionary';
 
 @Injectable()
-export class UserService {
+export class InstructorService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
@@ -27,8 +27,13 @@ export class UserService {
   async findAll(filter: IFilter | IFilter[], page: number, limit: number) {
     const take = limit;
     const skip = (page - 1) * limit;
-    const [users, total] = await this.userRepository.findAndCount({
+    const [instructors, total] = await this.userRepository.findAndCount({
       relations: {
+        instructor: {
+          educationPlace: true,
+          educationField: true,
+          educationLevel: true,
+        },
         state: true,
       },
       where: filter,
@@ -36,7 +41,7 @@ export class UserService {
       skip,
     });
     return {
-      users,
+      instructors,
       meta: {
         page,
         limit,
@@ -46,27 +51,32 @@ export class UserService {
   }
 
   async findOne(id: string) {
-    const user = await this.userRepository.findOne({
+    const instructor = await this.userRepository.findOne({
       relations: {
+        instructor: {
+          educationPlace: true,
+          educationField: true,
+          educationLevel: true,
+        },
         state: true,
       },
       where: {
         id,
       },
     });
-    if (!user) {
-      throw new NotFoundException(`User with id ${id} does not exist`);
+    if (!instructor) {
+      throw new NotFoundException(`Instructor with id ${id} does not exist`);
     }
     return {
-      user,
+      instructor,
     };
   }
 
-  async create(createUserDto: CreateUserDto) {
+  async create(createInstructorDto: CreateInstructorDto) {
     try {
       const role = (await this.roleRepository.findOneBy({
         type: {
-          value: RoleType.USER,
+          value: RoleType.INSTRUCTOR,
         },
       })) as Role;
       const nanoid = customAlphabet(alphanumeric, 8);
@@ -75,22 +85,29 @@ export class UserService {
       const password = await bcrypt.hash(random, 10);
 
       const instance = this.userRepository.create({
-        ...createUserDto,
+        ...createInstructorDto,
         role,
         password,
       });
 
       const result = await this.userRepository.save(instance);
 
-      const user = await this.userRepository.findOne({
-        relations: { state: true },
+      const instructor = await this.userRepository.findOne({
+        relations: {
+          instructor: {
+            educationPlace: true,
+            educationField: true,
+            educationLevel: true,
+          },
+          state: true,
+        },
         where: {
           id: result.id,
         },
       });
 
       return {
-        user,
+        instructor,
       };
     } catch (err) {
       if (err.code === '23505') {
@@ -104,16 +121,28 @@ export class UserService {
     }
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
+  async update(id: string, updateInstructorDto: UpdateInstructorDto) {
     try {
-      const result = await this.userRepository.update(id, updateUserDto);
+      const exists = await this.userRepository.findOneBy({ id });
 
-      if (result.affected === 0) {
-        throw new NotFoundException(`User with id ${id} does not exist`);
+      if (!exists) {
+        throw new NotFoundException(`Instructor with id ${id} does not exist`);
       }
 
-      const user = await this.userRepository.findOne({
+      const instance = this.userRepository.create({
+        id,
+        ...updateInstructorDto,
+      });
+
+      await this.userRepository.save(instance);
+
+      const instructor = await this.userRepository.findOne({
         relations: {
+          instructor: {
+            educationPlace: true,
+            educationField: true,
+            educationLevel: true,
+          },
           state: true,
         },
         where: {
@@ -122,7 +151,7 @@ export class UserService {
       });
 
       return {
-        user,
+        instructor,
       };
     } catch (err) {
       if (err.code === '23505') {

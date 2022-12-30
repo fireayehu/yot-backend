@@ -4,7 +4,6 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Role } from 'src/app/entities/role.entity';
 import { User } from 'src/app/entities/user.entity';
 import { IFilter } from 'src/app/shared/interfaces/filter.interface';
 import { Repository } from 'typeorm';
@@ -19,9 +18,6 @@ export class EmployeeService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-
-    @InjectRepository(Role)
-    private readonly roleRepository: Repository<Role>,
   ) {}
   async findAll(filter: IFilter | IFilter[], page: number, limit: number) {
     const take = limit;
@@ -121,6 +117,8 @@ export class EmployeeService {
       if (err.code === '23505') {
         if (err.detail.includes('email')) {
           throw new ConflictException('Email address already exists');
+        } else if (err.detail.includes('phoneNumber')) {
+          throw new ConflictException('Phone number already exists');
         }
       }
       throw err;

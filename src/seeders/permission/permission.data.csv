@@ -39,6 +39,10 @@ Create, create_datalookup, Data Lookup
 Read, read_datalookup, Data Lookup
 Update, update_datalookup, Data Lookup
 Delete, delete_datalookup, Data Lookup
+Create, create_educationplace, Education Place
+Read, read_educationplace, Education Place
+Update, update_educationplace, Education Place
+Delete, delete_educationplace, Education Place
 Create, create_educationfield, Education Field
 Read, read_educationfield, Education Field
 Update, update_educationfield, Education Field

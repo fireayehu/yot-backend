@@ -8,7 +8,11 @@ import { AuthModule } from './features/account/auth/auth.module';
 import { PermissionModule } from './features/account/permission/permission.module';
 import { RoleModule } from './features/account/role/role.module';
 import { DataLookupModule } from './features/data-lookup/data-lookup.module';
+import { EducationFieldModule } from './features/education-field/education-field.module';
+import { EducationLevelModule } from './features/education-level/education-level.module';
+import { EducationPlaceModule } from './features/education-place/education-place.module';
 import { EmployeeModule } from './features/employee/employee.module';
+import { InstructorModule } from './features/instructor/instructor.module';
 import { UserModule } from './features/user/user.module';
 
 @Module({
@@ -39,6 +43,10 @@ import { UserModule } from './features/user/user.module';
     RoleModule,
     UserModule,
     EmployeeModule,
+    InstructorModule,
+    EducationPlaceModule,
+    EducationFieldModule,
+    EducationLevelModule,
   ],
   controllers: [AppController],
   providers: [AppService],

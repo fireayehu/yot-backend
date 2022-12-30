@@ -29,4 +29,36 @@ export enum PermissionType {
   EMPLOYEE_READ = 'read_employee',
   EMPLOYEE_UPDATE = 'update_employee',
   EMPLOYEE_DELETE = 'delete_employee',
+
+  /**
+   * INSTRUCTOR
+   */
+  INSTRUCTOR_CREATE = 'create_instructor',
+  INSTRUCTOR_READ = 'read_instructor',
+  INSTRUCTOR_UPDATE = 'update_instructor',
+  INSTRUCTOR_DELETE = 'delete_instructor',
+
+  /**
+   * EDUCATION PLACE
+   */
+  EDUCATION_PLACE_CREATE = 'create_educationplace',
+  EDUCATION_PLACE_READ = 'read_educationplace',
+  EDUCATION_PLACE_UPDATE = 'update_educationplace',
+  EDUCATION_PLACE_DELETE = 'delete_educationplace',
+
+  /**
+   * EDUCATION FIELD
+   */
+  EDUCATION_FIELD_CREATE = 'create_educationfield',
+  EDUCATION_FIELD_READ = 'read_educationfield',
+  EDUCATION_FIELD_UPDATE = 'update_educationfield',
+  EDUCATION_FIELD_DELETE = 'delete_educationfield',
+
+  /**
+   * EDUCATION LEVEL
+   */
+  EDUCATION_LEVEL_CREATE = 'create_educationlevel',
+  EDUCATION_LEVEL_READ = 'read_educationlevel',
+  EDUCATION_LEVEL_UPDATE = 'update_educationlevel',
+  EDUCATION_LEVEL_DELETE = 'delete_educationlevel',
 }

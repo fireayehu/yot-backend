@@ -3,12 +3,13 @@ import { DecimalTransformer } from '../shared/transformers/decimal.transformer';
 import { Abstract } from './abstract.entity';
 import { EducationField } from './education-field.entity';
 import { EducationLevel } from './education-level.entity';
+import { EducationPlace } from './education-place.entity';
 import { User } from './user.entity';
 
 @Entity()
 export class Instructor extends Abstract {
-  @Column()
-  educationPlace: string;
+  @ManyToOne(() => EducationPlace)
+  educationPlace: EducationPlace;
 
   @ManyToOne(() => EducationField)
   educationField: EducationField;
