@@ -16,6 +16,10 @@ export class PoliciesGuard implements CanActivate {
 
     const { user } = context.switchToHttp().getRequest();
 
+    if (!user) {
+      return false;
+    }
+
     const permissions = user.role.permissions
       .filter((permission: any) => permission.granted)
       .map((permission: any) => permission.permission.code);
