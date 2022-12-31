@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  api-service:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: yot/api-service
+    ports:
+      - '8000:8000'
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

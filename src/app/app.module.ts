@@ -35,6 +35,9 @@ import { MailModule } from './shared/mail/mail.module';
         migrations: [path.join(__dirname, '../migrations/*.{ts,js}')],
         synchronize: false,
         logging: false,
+        ssl: {
+          rejectUnauthorized: false,
+        },
       }),
       inject: [ConfigService],
     }),
