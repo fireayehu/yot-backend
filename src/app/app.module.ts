@@ -11,8 +11,8 @@ import { DataLookupModule } from './features/data-lookup/data-lookup.module';
 import { EducationFieldModule } from './features/education-field/education-field.module';
 import { EducationLevelModule } from './features/education-level/education-level.module';
 import { EducationPlaceModule } from './features/education-place/education-place.module';
-import { EmployeeModule } from './features/employee/employee.module';
 import { InstructorModule } from './features/instructor/instructor.module';
+import { StaffModule } from './features/staff/staff.module';
 import { UserModule } from './features/user/user.module';
 import { MailModule } from './shared/mail/mail.module';
 
@@ -44,7 +44,7 @@ import { MailModule } from './shared/mail/mail.module';
     PermissionModule,
     RoleModule,
     UserModule,
-    EmployeeModule,
+    StaffModule,
     InstructorModule,
     EducationPlaceModule,
     EducationFieldModule,

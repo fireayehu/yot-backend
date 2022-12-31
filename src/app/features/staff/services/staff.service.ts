@@ -7,8 +7,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/app/entities/user.entity';
 import { IFilter } from 'src/app/shared/interfaces/filter.interface';
 import { Repository } from 'typeorm';
-import { CreateEmployeeDto } from '../dtos/create-employee.dto';
-import { UpdateEmployeeDto } from '../dtos/update-employee.dto';
+import { CreateStaffDto } from '../dtos/create-staff.dto';
+import { UpdateStaffDto } from '../dtos/update-staff.dto';
 import * as bcrypt from 'bcrypt';
 import { customAlphabet } from 'nanoid/async';
 import { alphanumeric } from 'nanoid-dictionary';
@@ -16,7 +16,7 @@ import { MailService } from 'src/app/shared/mail/services/mail.service';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
-export class EmployeeService {
+export class StaffService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
@@ -26,7 +26,7 @@ export class EmployeeService {
   async findAll(filter: IFilter | IFilter[], page: number, limit: number) {
     const take = limit;
     const skip = (page - 1) * limit;
-    const [employees, total] = await this.userRepository.findAndCount({
+    const [staffs, total] = await this.userRepository.findAndCount({
       relations: {
         state: true,
       },
@@ -35,7 +35,7 @@ export class EmployeeService {
       skip,
     });
     return {
-      employees,
+      staffs,
       meta: {
         page,
         limit,
@@ -45,7 +45,7 @@ export class EmployeeService {
   }
 
   async findOne(id: string) {
-    const employee = await this.userRepository.findOne({
+    const staff = await this.userRepository.findOne({
       relations: {
         state: true,
       },
@@ -53,15 +53,15 @@ export class EmployeeService {
         id,
       },
     });
-    if (!employee) {
-      throw new NotFoundException(`Employee with id ${id} does not exist`);
+    if (!staff) {
+      throw new NotFoundException(`Staff with id ${id} does not exist`);
     }
     return {
-      employee,
+      staff,
     };
   }
 
-  async create(createUserDto: CreateEmployeeDto) {
+  async create(createStaffDto: CreateStaffDto) {
     try {
       const nanoid = customAlphabet(alphanumeric, 8);
 
@@ -70,13 +70,13 @@ export class EmployeeService {
       const password = await bcrypt.hash(random, 10);
 
       const instance = this.userRepository.create({
-        ...createUserDto,
+        ...createStaffDto,
         password,
       });
 
       const result = await this.userRepository.save(instance);
 
-      const employee = (await this.userRepository.findOne({
+      const staff = (await this.userRepository.findOne({
         relations: { state: true },
         where: {
           id: result.id,
@@ -84,14 +84,14 @@ export class EmployeeService {
       })) as User;
 
       this.mailService.sendPasswordEmail({
-        to: employee.email,
-        name: `${employee.firstName} ${employee.lastName}`,
+        to: staff.email,
+        name: `${staff.firstName} ${staff.lastName}`,
         password: random,
-        link: this.configService.get<string>('EMPLOYEE_LOGIN_URL') as string,
+        link: this.configService.get<string>('STAFF_LOGIN_URL') as string,
       });
 
       return {
-        employee,
+        staff,
       };
     } catch (err) {
       if (err.code === '23505') {
@@ -105,15 +105,15 @@ export class EmployeeService {
     }
   }
 
-  async update(id: string, updateUserDto: UpdateEmployeeDto) {
+  async update(id: string, updateStaffDto: UpdateStaffDto) {
     try {
-      const result = await this.userRepository.update(id, updateUserDto);
+      const result = await this.userRepository.update(id, updateStaffDto);
 
       if (result.affected === 0) {
-        throw new NotFoundException(`Employee with id ${id} does not exist`);
+        throw new NotFoundException(`Staff with id ${id} does not exist`);
       }
 
-      const employee = await this.userRepository.findOne({
+      const staff = await this.userRepository.findOne({
         relations: {
           state: true,
         },
@@ -123,7 +123,7 @@ export class EmployeeService {
       });
 
       return {
-        employee,
+        staff,
       };
     } catch (err) {
       if (err.code === '23505') {

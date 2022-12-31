@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import {
   IsEmail,
   IsNotEmpty,
@@ -8,7 +9,7 @@ import {
 import { DataLookup } from 'src/app/entities/data-lookup.entity';
 import { Role } from 'src/app/entities/role.entity';
 
-export class CreateEmployeeDto {
+export class CreateStaffDto {
   @IsNotEmpty()
   @IsString()
   firstName: string;
@@ -19,6 +20,7 @@ export class CreateEmployeeDto {
 
   @IsNotEmpty()
   @IsEmail()
+  @Transform(({ value }) => value.toLowerCase())
   email: string;
 
   @IsOptional()

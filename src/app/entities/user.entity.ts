@@ -66,12 +66,4 @@ export class User extends Abstract {
     cascade: true,
   })
   student: Student;
-
-  @BeforeInsert()
-  @BeforeUpdate()
-  emailToUpperCase() {
-    if (this.email) {
-      this.email = this.email.toLowerCase();
-    }
-  }
 }

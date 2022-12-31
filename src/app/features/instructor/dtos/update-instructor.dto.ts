@@ -1,4 +1,4 @@
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import {
   IsEmail,
   IsNotEmpty,
@@ -41,6 +41,7 @@ export class UpdateInstructorDto {
 
   @IsOptional()
   @IsEmail()
+  @Transform(({ value }) => value.toLowerCase())
   email: string;
 
   @IsOptional()

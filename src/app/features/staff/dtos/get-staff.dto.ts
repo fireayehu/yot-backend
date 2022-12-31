@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsUUID } from 'class-validator';
 
-export class GetEmployeeParamDto {
+export class GetStaffParamDto {
   @IsNotEmpty()
   @IsUUID()
   id: string;

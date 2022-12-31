@@ -23,12 +23,12 @@ export enum PermissionType {
   USER_DELETE = 'delete_user',
 
   /**
-   * EMPLOYEE
+   * STAFF
    */
-  EMPLOYEE_CREATE = 'create_employee',
-  EMPLOYEE_READ = 'read_employee',
-  EMPLOYEE_UPDATE = 'update_employee',
-  EMPLOYEE_DELETE = 'delete_employee',
+  STAFF_CREATE = 'create_staff',
+  STAFF_READ = 'read_staff',
+  STAFF_UPDATE = 'update_staff',
+  STAFF_DELETE = 'delete_staff',
 
   /**
    * INSTRUCTOR
