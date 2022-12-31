@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
@@ -16,6 +17,8 @@ import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from '../dtos/sign-up.dto';
 import { Role } from 'src/app/entities/role.entity';
 import { DataLookup } from 'src/app/entities/data-lookup.entity';
+import { ChangePasswordDto } from '../dtos/change-password.dto';
+import { UpdateProfileDto } from '../dtos/update-profile.dto';
 
 @Injectable()
 export class AuthService {
@@ -200,6 +203,57 @@ export class AuthService {
       }
       throw err;
     }
+  }
+
+  async changePassword(user: User, changePasswordDto: ChangePasswordDto) {
+    if (
+      !(await this.verifyPassword(
+        changePasswordDto.currentPassword,
+        user.password,
+      ))
+    ) {
+      throw new BadRequestException('Incorrect current password');
+    }
+
+    const password = await bcrypt.hash(changePasswordDto.password, 10);
+
+    const result = await this.userRepository.update(user.id, {
+      password,
+    });
+
+    if (result.affected === 0) {
+      throw new NotFoundException('The user does not exist');
+    }
+
+    return {
+      message: 'Password updated successfully',
+    };
+  }
+
+  async updateProfile(id: string, updateProfileDto: UpdateProfileDto) {
+    const result = await this.userRepository.update(id, updateProfileDto);
+
+    if (result.affected === 0) {
+      throw new NotFoundException('The user does not exist');
+    }
+
+    const user = (await this.userRepository.findOne({
+      relations: {
+        role: {
+          type: true,
+          permissions: {
+            permission: true,
+          },
+        },
+      },
+      where: {
+        id,
+      },
+    })) as unknown as User;
+
+    return {
+      user,
+    };
   }
 
   private async verifyPassword(canidatePassword: string, userPassword: string) {
