@@ -30,6 +30,9 @@ const env = cleanEnv(process.env, {
     username: env.DATABASE_USERNAME,
     password: env.DATABASE_PASSWORD,
     database: env.DATABASE_NAME,
+    ssl: {
+      rejectUnauthorized: false,
+    },
     entities: [path.join(__dirname, '../app/entities/*.ts')],
     seeds: [
       DataLookupSeeder,
