@@ -31,6 +31,14 @@ export class AuthService {
 
   async login(loginDto: LoginDto) {
     const user = await this.userRepository.findOne({
+      relations: {
+        role: {
+          type: true,
+          permissions: {
+            permission: true,
+          },
+        },
+      },
       where: {
         email: loginDto.email,
         role: {
@@ -42,6 +50,91 @@ export class AuthService {
           value: ObjectState.ACTIVE,
         },
       },
+    });
+
+    if (
+      !user ||
+      !(await this.verifyPassword(loginDto.password, user.password))
+    ) {
+      throw new NotFoundException('Incorrect email or password');
+    }
+
+    return {
+      user,
+      token: this.jwtService.sign({ id: user.id }),
+    };
+  }
+
+  async instructorLogin(loginDto: LoginDto) {
+    const user = await this.userRepository.findOne({
+      relations: {
+        role: {
+          type: true,
+          permissions: {
+            permission: true,
+          },
+        },
+      },
+      where: {
+        email: loginDto.email,
+        role: {
+          type: {
+            value: RoleType.INSTRUCTOR,
+          },
+        },
+        state: {
+          value: ObjectState.ACTIVE,
+        },
+      },
+    });
+
+    if (
+      !user ||
+      !(await this.verifyPassword(loginDto.password, user.password))
+    ) {
+      throw new NotFoundException('Incorrect email or password');
+    }
+
+    return {
+      user,
+      token: this.jwtService.sign({ id: user.id }),
+    };
+  }
+
+  async staffLogin(loginDto: LoginDto) {
+    const user = await this.userRepository.findOne({
+      relations: {
+        role: {
+          type: true,
+          permissions: {
+            permission: true,
+          },
+        },
+      },
+      where: [
+        {
+          email: loginDto.email,
+          role: {
+            type: {
+              value: RoleType.CUSTOM,
+            },
+          },
+          state: {
+            value: ObjectState.ACTIVE,
+          },
+        },
+        {
+          email: loginDto.email,
+          role: {
+            type: {
+              value: RoleType.SUPER_ADMIN,
+            },
+          },
+          state: {
+            value: ObjectState.ACTIVE,
+          },
+        },
+      ],
     });
 
     if (
@@ -80,6 +173,14 @@ export class AuthService {
       const result = await this.userRepository.save(instance);
 
       const user = (await this.userRepository.findOne({
+        relations: {
+          role: {
+            type: true,
+            permissions: {
+              permission: true,
+            },
+          },
+        },
         where: {
           id: result.id,
         },

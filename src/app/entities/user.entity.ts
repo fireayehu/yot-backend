@@ -1,12 +1,4 @@
-import {
-  Entity,
-  Column,
-  Index,
-  ManyToOne,
-  OneToOne,
-  BeforeInsert,
-  BeforeUpdate,
-} from 'typeorm';
+import { Entity, Column, Index, ManyToOne, OneToOne } from 'typeorm';
 import { Abstract } from './abstract.entity';
 import { Instructor } from './instructor.entity';
 import { Role } from './role.entity';

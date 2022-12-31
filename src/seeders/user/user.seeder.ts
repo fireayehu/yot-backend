@@ -7,16 +7,22 @@ import { parse } from 'csv-parse';
 
 import { User } from '../../app/entities/user.entity';
 import { Role } from '../../app/entities/role.entity';
+import { DataLookup } from '../../app/entities/data-lookup.entity';
 
 export class UserSeeder implements Seeder {
   public async run(dataSource: DataSource): Promise<any> {
     const repository = dataSource.getRepository(User);
-    const dataLookupRepository = dataSource.getRepository(Role);
+    const roleRepository = dataSource.getRepository(Role);
+    const dataLookupRepository = dataSource.getRepository(DataLookup);
 
-    const roles = await dataLookupRepository.find({
+    const roles = await roleRepository.find({
       relations: { type: true },
       where: {},
     });
+
+    const state = (await dataLookupRepository.findOneBy({
+      value: 'object_state_active',
+    })) as DataLookup;
 
     const users: User[] = [];
 
@@ -32,6 +38,7 @@ export class UserSeeder implements Seeder {
               email: row[2],
               password: bcrypt.hashSync(row[3], 10),
               role,
+              state,
             }),
           );
         }

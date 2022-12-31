@@ -1,9 +1,9 @@
 export enum ObjectState {
   DRAFT = 'object_state_draft',
-  ACTIVE = 'object_state_draft',
-  INACTIVE = 'object_state_draft',
-  DELETED = 'object_state_draft',
-  BLOCKED = 'object_state_draft',
+  ACTIVE = 'object_state_active',
+  INACTIVE = 'object_state_inactive',
+  DELETED = 'objecjt_state_deleted',
+  BLOCKED = 'object_state_blocked',
 }
 
 export enum RoleType {
