@@ -14,6 +14,8 @@ import { UpdateInstructorDto } from '../dtos/update-instructor.dto';
 import * as bcrypt from 'bcrypt';
 import { customAlphabet } from 'nanoid/async';
 import { alphanumeric } from 'nanoid-dictionary';
+import { ConfigService } from '@nestjs/config';
+import { MailService } from 'src/app/shared/mail/services/mail.service';
 
 @Injectable()
 export class InstructorService {
@@ -23,6 +25,9 @@ export class InstructorService {
 
     @InjectRepository(Role)
     private readonly roleRepository: Repository<Role>,
+
+    private readonly mailService: MailService,
+    private readonly configService: ConfigService,
   ) {}
   async findAll(filter: IFilter | IFilter[], page: number, limit: number) {
     const take = limit;
@@ -80,7 +85,8 @@ export class InstructorService {
         },
       })) as Role;
       const nanoid = customAlphabet(alphanumeric, 8);
-      const random = await nanoid();
+
+      const random = (await nanoid()).toUpperCase();
 
       const password = await bcrypt.hash(random, 10);
 
@@ -92,7 +98,7 @@ export class InstructorService {
 
       const result = await this.userRepository.save(instance);
 
-      const instructor = await this.userRepository.findOne({
+      const instructor = (await this.userRepository.findOne({
         relations: {
           instructor: {
             educationPlace: true,
@@ -104,6 +110,13 @@ export class InstructorService {
         where: {
           id: result.id,
         },
+      })) as unknown as User;
+
+      this.mailService.sendPasswordEmail({
+        to: instructor.email,
+        name: `${instructor.firstName} ${instructor.lastName}`,
+        password: random,
+        link: this.configService.get<string>('INSTRUCTOR_LOGIN_URL') as string,
       });
 
       return {

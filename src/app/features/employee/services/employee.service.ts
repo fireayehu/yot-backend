@@ -12,12 +12,16 @@ import { UpdateEmployeeDto } from '../dtos/update-employee.dto';
 import * as bcrypt from 'bcrypt';
 import { customAlphabet } from 'nanoid/async';
 import { alphanumeric } from 'nanoid-dictionary';
+import { MailService } from 'src/app/shared/mail/services/mail.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class EmployeeService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    private readonly mailService: MailService,
+    private readonly configService: ConfigService,
   ) {}
   async findAll(filter: IFilter | IFilter[], page: number, limit: number) {
     const take = limit;
@@ -60,7 +64,8 @@ export class EmployeeService {
   async create(createUserDto: CreateEmployeeDto) {
     try {
       const nanoid = customAlphabet(alphanumeric, 8);
-      const random = await nanoid();
+
+      const random = (await nanoid()).toUpperCase();
 
       const password = await bcrypt.hash(random, 10);
 
@@ -71,11 +76,18 @@ export class EmployeeService {
 
       const result = await this.userRepository.save(instance);
 
-      const employee = await this.userRepository.findOne({
+      const employee = (await this.userRepository.findOne({
         relations: { state: true },
         where: {
           id: result.id,
         },
+      })) as User;
+
+      this.mailService.sendPasswordEmail({
+        to: employee.email,
+        name: `${employee.firstName} ${employee.lastName}`,
+        password: random,
+        link: this.configService.get<string>('EMPLOYEE_LOGIN_URL') as string,
       });
 
       return {

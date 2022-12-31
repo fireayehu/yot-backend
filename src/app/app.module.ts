@@ -14,6 +14,7 @@ import { EducationPlaceModule } from './features/education-place/education-place
 import { EmployeeModule } from './features/employee/employee.module';
 import { InstructorModule } from './features/instructor/instructor.module';
 import { UserModule } from './features/user/user.module';
+import { MailModule } from './shared/mail/mail.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { UserModule } from './features/user/user.module';
       }),
       inject: [ConfigService],
     }),
+    MailModule,
     AuthModule,
     DataLookupModule,
     PermissionModule,

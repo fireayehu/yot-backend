@@ -1,4 +1,12 @@
-import { Entity, Column, Index, ManyToOne, OneToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  Index,
+  ManyToOne,
+  OneToOne,
+  BeforeInsert,
+  BeforeUpdate,
+} from 'typeorm';
 import { Abstract } from './abstract.entity';
 import { Instructor } from './instructor.entity';
 import { Role } from './role.entity';
@@ -58,4 +66,12 @@ export class User extends Abstract {
     cascade: true,
   })
   student: Student;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  emailToUpperCase() {
+    if (this.email) {
+      this.email = this.email.toLowerCase();
+    }
+  }
 }
