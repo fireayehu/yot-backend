@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { MulterModule } from '@nestjs/platform-express';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { S3Client } from '@aws-sdk/client-s3';
+import { MailModule } from 'src/app/shared/mail/mail.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { S3Client } from '@aws-sdk/client-s3';
       },
       inject: [ConfigService],
     }),
+    MailModule,
   ],
   controllers: [UserController],
   providers: [UserService, UserFilter],

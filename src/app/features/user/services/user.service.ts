@@ -14,6 +14,8 @@ import { UpdateUserDto } from '../dtos/update-user.dto';
 import * as bcrypt from 'bcrypt';
 import { customAlphabet } from 'nanoid/async';
 import { alphanumeric } from 'nanoid-dictionary';
+import { MailService } from 'src/app/shared/mail/services/mail.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class UserService {
@@ -23,6 +25,9 @@ export class UserService {
 
     @InjectRepository(Role)
     private readonly roleRepository: Repository<Role>,
+
+    private readonly mailService: MailService,
+    private readonly configService: ConfigService,
   ) {}
   async findAll(filter: IFilter | IFilter[], page: number, limit: number) {
     const take = limit;
@@ -82,11 +87,18 @@ export class UserService {
 
       const result = await this.userRepository.save(instance);
 
-      const user = await this.userRepository.findOne({
+      const user = (await this.userRepository.findOne({
         relations: { state: true },
         where: {
           id: result.id,
         },
+      })) as unknown as User;
+
+      this.mailService.sendPasswordEmail({
+        to: user.email,
+        name: `${user.firstName} ${user.lastName}`,
+        password: random,
+        link: this.configService.get<string>('USER_LOGIN_URL') as string,
       });
 
       return {
