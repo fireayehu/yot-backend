@@ -6,8 +6,11 @@ import {
   Patch,
   Post,
   Query,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { CheckPolicies } from '../../account/auth/decorator/policy.decorator';
 import { JwtAuthGuard } from '../../account/auth/guards/jwt.guard';
 import { PoliciesGuard } from '../../account/auth/guards/policy.guard';
@@ -50,16 +53,24 @@ export class StaffController {
     return this.staffService.findOne(getStaffParamDto.id);
   }
 
+  @UseInterceptors(FileInterceptor('profilePicture'))
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
     permissions.includes(PermissionType.STAFF_CREATE),
   )
   @UseGuards(JwtAuthGuard)
   @Post()
-  async create(@Body() createStaffDto: CreateStaffDto) {
+  async create(
+    @UploadedFile() file: Express.MulterS3.File,
+    @Body() createStaffDto: CreateStaffDto,
+  ) {
+    if (file) {
+      createStaffDto.profilePicture = file.key;
+    }
     return this.staffService.create(createStaffDto);
   }
 
+  @UseInterceptors(FileInterceptor('profilePicture'))
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
     permissions.includes(PermissionType.STAFF_UPDATE),
@@ -67,9 +78,13 @@ export class StaffController {
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   async update(
+    @UploadedFile() file: Express.MulterS3.File,
     @Param() updateStaffParamDto: UpdateStaffParamDto,
     @Body() updateStaffDto: UpdateStaffDto,
   ) {
+    if (file) {
+      updateStaffDto.profilePicture = file.key;
+    }
     return this.staffService.update(updateStaffParamDto.id, updateStaffDto);
   }
 }

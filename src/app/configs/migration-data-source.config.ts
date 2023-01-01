@@ -13,6 +13,7 @@ const env = cleanEnv(process.env, {
   DATABASE_PORT: port(),
   DATABASE_USERNAME: str(),
   DATABASE_PASSWORD: str(),
+  DB_ENV: str(),
 });
 
 export const AppDataSource = new DataSource({
@@ -24,9 +25,12 @@ export const AppDataSource = new DataSource({
   database: env.DATABASE_NAME,
   synchronize: false,
   logging: false,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  ssl:
+    env.DB_ENV === 'local'
+      ? false
+      : {
+          rejectUnauthorized: false,
+        },
   entities: [path.join(__dirname, '../entities/*.{ts,js}')],
   migrations: [path.join(__dirname, '../../migrations/*.{ts,js}')],
 });

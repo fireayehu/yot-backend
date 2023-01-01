@@ -6,8 +6,11 @@ import {
   Patch,
   Post,
   Query,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { CheckPolicies } from '../../account/auth/decorator/policy.decorator';
 import { JwtAuthGuard } from '../../account/auth/guards/jwt.guard';
 import { PoliciesGuard } from '../../account/auth/guards/policy.guard';
@@ -53,16 +56,24 @@ export class InstructorController {
     return this.instructorService.findOne(getInstructorParamDto.id);
   }
 
+  @UseInterceptors(FileInterceptor('profilePicture'))
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
     permissions.includes(PermissionType.INSTRUCTOR_CREATE),
   )
   @UseGuards(JwtAuthGuard)
   @Post()
-  async create(@Body() createInstructorDto: CreateInstructorDto) {
+  async create(
+    @UploadedFile() file: Express.MulterS3.File,
+    @Body() createInstructorDto: CreateInstructorDto,
+  ) {
+    if (file) {
+      createInstructorDto.profilePicture = file.key;
+    }
     return this.instructorService.create(createInstructorDto);
   }
 
+  @UseInterceptors(FileInterceptor('profilePicture'))
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
     permissions.includes(PermissionType.INSTRUCTOR_UPDATE),
@@ -70,9 +81,13 @@ export class InstructorController {
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   async update(
+    @UploadedFile() file: Express.MulterS3.File,
     @Param() updateInstructorParamDto: UpdateInstructorParamDto,
     @Body() updateInstructorDto: UpdateInstructorDto,
   ) {
+    if (file) {
+      updateInstructorDto.profilePicture = file.key;
+    }
     return this.instructorService.update(
       updateInstructorParamDto.id,
       updateInstructorDto,

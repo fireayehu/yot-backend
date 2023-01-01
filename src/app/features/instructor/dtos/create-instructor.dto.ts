@@ -1,4 +1,4 @@
-import { Transform, Type } from 'class-transformer';
+import { plainToClass, Transform, Type } from 'class-transformer';
 import {
   IsEmail,
   IsNotEmpty,
@@ -59,5 +59,6 @@ export class CreateInstructorDto {
   @IsNotEmpty()
   @ValidateNested()
   @Type(() => InstructorDto)
+  @Transform(({ value }) => plainToClass(InstructorDto, JSON.parse(value)))
   instructor: InstructorDto;
 }

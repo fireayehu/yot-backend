@@ -6,8 +6,11 @@ import {
   Patch,
   Post,
   Query,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { CheckPolicies } from '../../account/auth/decorator/policy.decorator';
 import { JwtAuthGuard } from '../../account/auth/guards/jwt.guard';
 import { PoliciesGuard } from '../../account/auth/guards/policy.guard';
@@ -50,16 +53,24 @@ export class UserController {
     return this.userService.findOne(getUserParamDto.id);
   }
 
+  @UseInterceptors(FileInterceptor('profilePicture'))
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
     permissions.includes(PermissionType.USER_CREATE),
   )
   @UseGuards(JwtAuthGuard)
   @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
+  async create(
+    @UploadedFile() file: Express.MulterS3.File,
+    @Body() createUserDto: CreateUserDto,
+  ) {
+    if (file) {
+      createUserDto.profilePicture = file.key;
+    }
     return this.userService.create(createUserDto);
   }
 
+  @UseInterceptors(FileInterceptor('profilePicture'))
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
     permissions.includes(PermissionType.USER_UPDATE),
@@ -67,9 +78,13 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   async update(
+    @UploadedFile() file: Express.MulterS3.File,
     @Param() updateUserParamDto: UpdateUserParamDto,
     @Body() updateUserDto: UpdateUserDto,
   ) {
+    if (file) {
+      updateUserDto.profilePicture = file.key;
+    }
     return this.userService.update(updateUserParamDto.id, updateUserDto);
   }
 }

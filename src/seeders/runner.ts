@@ -20,6 +20,7 @@ const env = cleanEnv(process.env, {
   DATABASE_PORT: port(),
   DATABASE_USERNAME: str(),
   DATABASE_PASSWORD: str(),
+  DB_ENV: str(),
 });
 
 (async () => {
@@ -30,9 +31,12 @@ const env = cleanEnv(process.env, {
     username: env.DATABASE_USERNAME,
     password: env.DATABASE_PASSWORD,
     database: env.DATABASE_NAME,
-    ssl: {
-      rejectUnauthorized: false,
-    },
+    ssl:
+      env.DB_ENV === 'local'
+        ? false
+        : {
+            rejectUnauthorized: false,
+          },
     entities: [path.join(__dirname, '../app/entities/*.ts')],
     seeds: [
       DataLookupSeeder,
