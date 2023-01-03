@@ -33,46 +33,48 @@ export class RolePermissionSeeder implements Seeder {
       },
     })) as unknown as Role;
 
-    fs.createReadStream(path.join(__dirname, 'role-permission.data.csv'))
-      .pipe(parse({ delimiter: ',', from_line: 2, trim: true }))
-      .on('data', (row: string[]) => {
-        if (row[0]) {
-          const permission = permissions.find(
-            (permission) => permission.code === row[0],
-          );
+    const parser = fs
+      .createReadStream(path.join(__dirname, 'role-permission.data.csv'))
+      .pipe(
+        parse({
+          delimiter: ',',
+          from_line: 2,
+          skip_empty_lines: true,
+          trim: true,
+        }),
+      );
 
-          if (permission) {
-            rolePermissions.push(
-              repository.create({
-                role: superadmin,
-                permission,
-                granted: row[1] === 'Y',
-              }),
-            );
+    for await (const row of parser) {
+      const permission = permissions.find(
+        (permission) => permission.code === row[0],
+      );
+      rolePermissions.push(
+        repository.create({
+          role: superadmin,
+          permission,
+          granted: row[1] === 'Y',
+        }),
+      );
 
-            rolePermissions.push(
-              repository.create({
-                role: user,
-                permission,
-                granted: row[2] === 'Y',
-              }),
-            );
+      rolePermissions.push(
+        repository.create({
+          role: user,
+          permission,
+          granted: row[2] === 'Y',
+        }),
+      );
 
-            rolePermissions.push(
-              repository.create({
-                role: instructor,
-                permission,
-                granted: row[3] === 'Y',
-              }),
-            );
-          }
-        }
-      })
-      .on('end', async () => {
-        await repository.upsert(rolePermissions, {
-          conflictPaths: ['role', 'permission'],
-          skipUpdateIfNoValuesChanged: true,
-        });
-      });
+      rolePermissions.push(
+        repository.create({
+          role: instructor,
+          permission,
+          granted: row[3] === 'Y',
+        }),
+      );
+    }
+
+    await repository.upsert(rolePermissions, {
+      conflictPaths: ['role', 'permission'],
+    });
   }
 }

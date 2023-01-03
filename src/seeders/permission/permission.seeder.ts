@@ -14,30 +14,30 @@ export class PermissionSeeder implements Seeder {
     const permissions: Permission[] = [];
     const resources = await resourceRepository.find();
 
-    fs.createReadStream(path.join(__dirname, 'permission.data.csv'))
-      .pipe(parse({ delimiter: ',', from_line: 2, trim: true }))
-      .on('data', (row: string[]) => {
-        if (row[0]) {
-          const resource = resources.find(
-            (resource) => resource.name === row[2],
-          );
+    const parser = fs
+      .createReadStream(path.join(__dirname, 'permission.data.csv'))
+      .pipe(
+        parse({
+          delimiter: ',',
+          from_line: 2,
+          skip_empty_lines: true,
+          trim: true,
+        }),
+      );
 
-          if (resource) {
-            permissions.push(
-              repository.create({
-                name: row[0],
-                code: row[1],
-                resource,
-              }),
-            );
-          }
-        }
-      })
-      .on('end', async () => {
-        await repository.upsert(permissions, {
-          conflictPaths: ['code'],
-          skipUpdateIfNoValuesChanged: true,
-        });
-      });
+    for await (const row of parser) {
+      const resource = resources.find((resource) => resource.name === row[2]);
+      permissions.push(
+        repository.create({
+          name: row[0],
+          code: row[1],
+          resource,
+        }),
+      );
+    }
+
+    await repository.upsert(permissions, {
+      conflictPaths: ['code'],
+    });
   }
 }

@@ -11,24 +11,29 @@ export class DataLookupSeeder implements Seeder {
 
     const datalookups: DataLookup[] = [];
 
-    fs.createReadStream(path.join(__dirname, 'data-lookup.data.csv'))
-      .pipe(parse({ delimiter: ',', from_line: 2, trim: true }))
-      .on('data', (row: string[]) => {
-        if (row[0]) {
-          datalookups.push(
-            repository.create({
-              type: row[0],
-              value: row[1],
-              category: row[2],
-            }),
-          );
-        }
-      })
-      .on('end', async () => {
-        await repository.upsert(datalookups, {
-          conflictPaths: ['value'],
-          skipUpdateIfNoValuesChanged: true,
-        });
-      });
+    const parser = fs
+      .createReadStream(path.join(__dirname, 'data-lookup.data.csv'))
+      .pipe(
+        parse({
+          delimiter: ',',
+          from_line: 2,
+          skip_empty_lines: true,
+          trim: true,
+        }),
+      );
+
+    for await (const row of parser) {
+      datalookups.push(
+        repository.create({
+          type: row[0],
+          value: row[1],
+          category: row[2],
+        }),
+      );
+    }
+
+    await repository.upsert(datalookups, {
+      conflictPaths: ['value'],
+    });
   }
 }

@@ -11,22 +11,26 @@ export class ResourceSeeder implements Seeder {
 
     const resources: Resource[] = [];
 
-    fs.createReadStream(path.join(__dirname, 'resource.data.csv'))
-      .pipe(parse({ delimiter: ',', from_line: 2, trim: true }))
-      .on('data', (row: string[]) => {
-        if (row[0]) {
-          resources.push(
-            repository.create({
-              name: row[0],
-            }),
-          );
-        }
-      })
-      .on('end', async () => {
-        await repository.upsert(resources, {
-          conflictPaths: ['name'],
-          skipUpdateIfNoValuesChanged: true,
-        });
-      });
+    const parser = fs
+      .createReadStream(path.join(__dirname, 'resource.data.csv'))
+      .pipe(
+        parse({
+          delimiter: ',',
+          from_line: 2,
+          skip_empty_lines: true,
+          trim: true,
+        }),
+      );
+
+    for await (const row of parser) {
+      resources.push(
+        repository.create({
+          name: row[0],
+        }),
+      );
+    }
+    await repository.upsert(resources, {
+      conflictPaths: ['name'],
+    });
   }
 }

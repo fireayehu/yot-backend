@@ -17,25 +17,29 @@ export class RoleSeeder implements Seeder {
 
     const roles: Role[] = [];
 
-    fs.createReadStream(path.join(__dirname, 'role.data.csv'))
-      .pipe(parse({ delimiter: ',', from_line: 2, trim: true }))
-      .on('data', (row: string[]) => {
-        if (row[0]) {
-          const type = types.find((type) => type.value === row[1]);
-          roles.push(
-            repository.create({
-              name: row[0],
-              type,
-              description: row[2],
-            }),
-          );
-        }
-      })
-      .on('end', async () => {
-        await repository.upsert(roles, {
-          conflictPaths: ['name'],
-          skipUpdateIfNoValuesChanged: true,
-        });
-      });
+    const parser = fs
+      .createReadStream(path.join(__dirname, 'role.data.csv'))
+      .pipe(
+        parse({
+          delimiter: ',',
+          from_line: 2,
+          skip_empty_lines: true,
+          trim: true,
+        }),
+      );
+
+    for await (const row of parser) {
+      const type = types.find((type) => type.value === row[1]);
+      roles.push(
+        repository.create({
+          name: row[0],
+          type,
+          description: row[2],
+        }),
+      );
+    }
+    await repository.upsert(roles, {
+      conflictPaths: ['name'],
+    });
   }
 }
