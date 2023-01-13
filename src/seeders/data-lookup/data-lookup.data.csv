@@ -25,3 +25,6 @@ payment_method_type, payment_method_type_hosted, PAYMENT
 job_type, job_type_parttime, JOB
 job_type, job_type_fulltime, JOB
 job_type, job_type_contract, JOB
+service_type, service_type_ittraining, SERVICE
+service_type, service_type_consultancy, SERVICE
+service_type, service_type_project_support, SERVICE

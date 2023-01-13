@@ -4,6 +4,7 @@ import { Abstract } from './abstract.entity';
 import { DataLookup } from './data-lookup.entity';
 import { Enrolment } from './enrolment.entity';
 import { PaymentMethod } from './payment-method.entity';
+import { UserSubService } from './user-sub-service.entity';
 import { User } from './user.entity';
 
 @Entity()
@@ -22,6 +23,9 @@ export class Payment extends Abstract {
 
   @ManyToOne(() => Enrolment)
   enrolment: Enrolment;
+
+  @ManyToOne(() => UserSubService)
+  subService: UserSubService;
 
   @ManyToOne(() => User)
   payer: User;

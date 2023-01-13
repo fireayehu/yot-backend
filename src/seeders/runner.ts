@@ -9,6 +9,7 @@ import { DataLookupSeeder } from './data-lookup/data-lookup.seeder';
 import { RoleSeeder } from './role/role.seeder';
 import { RolePermissionSeeder } from './role-permission/role-permission.seeder';
 import { UserSeeder } from './user/user.seeder';
+import { ServiceSeeder } from './service/service.seeder';
 
 dotenv.config({
   path: '.env.migration',
@@ -45,6 +46,7 @@ const env = cleanEnv(process.env, {
       RoleSeeder,
       RolePermissionSeeder,
       UserSeeder,
+      ServiceSeeder,
     ],
   };
 

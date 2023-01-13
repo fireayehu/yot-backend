@@ -1,26 +1,21 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { Abstract } from './abstract.entity';
 import { SubService } from './sub-service.entity';
+import { User } from './user.entity';
 
 @Entity()
-export class ContactUs extends Abstract {
+export class UserSubService extends Abstract {
   @Column()
-  firstName: string;
-
-  @Column()
-  lastName: string;
-
-  @Column()
-  email: string;
+  title: string;
 
   @Column({
     nullable: true,
   })
-  phoneNumber: string;
+  description: string;
 
-  @Column()
-  message: string;
+  @ManyToOne(() => User)
+  user: User;
 
   @ManyToOne(() => SubService)
-  subService: SubService;
+  service: SubService;
 }
