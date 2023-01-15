@@ -135,6 +135,10 @@ create_student, Y, Y, Y
 read_student, Y, Y, Y 
 update_student, Y, Y, Y 
 delete_student, Y, Y, Y 
+create_subservice, Y, Y, Y 
+read_subservice, Y, Y, Y 
+update_subservice, Y, Y, Y 
+delete_subservice, Y, Y, Y 
 create_tag, Y, Y, Y 
 read_tag, Y, Y, Y 
 update_tag, Y, Y, Y 

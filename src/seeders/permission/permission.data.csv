@@ -135,6 +135,10 @@ Create, create_student, Student
 Read, read_student, Student
 Update, update_student, Student
 Delete, delete_student, Student
+Create, create_subservice, Sub Service
+Read, read_subservice, Sub Service
+Update, update_subservice, Sub Service
+Delete, delete_subservice, Sub Service
 Create, create_tag, Tag
 Read, read_tag, Tag
 Update, update_tag, Tag

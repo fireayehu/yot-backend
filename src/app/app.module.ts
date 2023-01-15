@@ -7,12 +7,15 @@ import { AppService } from './app.service';
 import { AuthModule } from './features/account/auth/auth.module';
 import { PermissionModule } from './features/account/permission/permission.module';
 import { RoleModule } from './features/account/role/role.module';
+import { ContactUsModule } from './features/contact-us/contact-us.module';
 import { DataLookupModule } from './features/data-lookup/data-lookup.module';
 import { EducationFieldModule } from './features/education-field/education-field.module';
 import { EducationLevelModule } from './features/education-level/education-level.module';
 import { EducationPlaceModule } from './features/education-place/education-place.module';
 import { InstructorModule } from './features/instructor/instructor.module';
+import { ServiceModule } from './features/service/service.module';
 import { StaffModule } from './features/staff/staff.module';
+import { SubServiceModule } from './features/sub-service/sub-service.module';
 import { UserModule } from './features/user/user.module';
 import { MailModule } from './shared/mail/mail.module';
 
@@ -55,6 +58,9 @@ import { MailModule } from './shared/mail/mail.module';
     EducationPlaceModule,
     EducationFieldModule,
     EducationLevelModule,
+    ContactUsModule,
+    SubServiceModule,
+    ServiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

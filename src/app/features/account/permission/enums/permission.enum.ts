@@ -61,4 +61,28 @@ export enum PermissionType {
   EDUCATION_LEVEL_READ = 'read_educationlevel',
   EDUCATION_LEVEL_UPDATE = 'update_educationlevel',
   EDUCATION_LEVEL_DELETE = 'delete_educationlevel',
+
+  /**
+   * CONTACT US
+   */
+  CONTACT_US_CREATE = 'create_contactus',
+  CONTACT_US_READ = 'read_contactus',
+  CONTACT_US_UPDATE = 'update_contactus',
+  CONTACT_US_DELETE = 'delete_contactus',
+
+  /**
+   * SUB SERVICE
+   */
+  SUB_SERVICE_CREATE = 'create_subservice',
+  SUB_SERVICE_READ = 'read_subservice',
+  SUB_SERVICE_UPDATE = 'update_subservice',
+  SUB_SERVICE_DELETE = 'delete_subservice',
+
+  /**
+   *  SERVICE
+   */
+  SERVICE_CREATE = 'create_service',
+  SERVICE_READ = 'read_service',
+  SERVICE_UPDATE = 'update_service',
+  SERVICE_DELETE = 'delete_service',
 }
