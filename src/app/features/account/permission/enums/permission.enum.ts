@@ -109,4 +109,12 @@ export enum PermissionType {
   JOB_POST_READ = 'read_jobpost',
   JOB_POST_UPDATE = 'update_jobpost',
   JOB_POST_DELETE = 'delete_jobpost',
+
+  /**
+   *  TAG
+   */
+  TAG_CREATE = 'create_tag',
+  TAG_READ = 'read_tag',
+  TAG_UPDATE = 'update_tag',
+  TAG_DELETE = 'delete_tag',
 }
