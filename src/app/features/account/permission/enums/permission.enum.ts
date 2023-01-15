@@ -93,4 +93,12 @@ export enum PermissionType {
   JOB_LOCATION_READ = 'read_joblocation',
   JOB_LOCATION_UPDATE = 'update_joblocation',
   JOB_LOCATION_DELETE = 'delete_joblocation',
+
+  /**
+   *  JOB CATEGORY
+   */
+  JOB_CATEGORY_CREATE = 'create_jobacategory',
+  JOB_CATEGORY_READ = 'read_jobacategory',
+  JOB_CATEGORY_UPDATE = 'update_jobacategory',
+  JOB_CATEGORY_DELETE = 'delete_jobacategory',
 }
