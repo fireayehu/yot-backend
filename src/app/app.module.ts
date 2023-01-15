@@ -15,6 +15,7 @@ import { EducationPlaceModule } from './features/education-place/education-place
 import { InstructorModule } from './features/instructor/instructor.module';
 import { JobCategoryModule } from './features/job-category/job-category.module';
 import { JobLocationModule } from './features/job-location/job-location.module';
+import { JobPostModule } from './features/job-post/job-post.module';
 import { ServiceModule } from './features/service/service.module';
 import { StaffModule } from './features/staff/staff.module';
 import { SubServiceModule } from './features/sub-service/sub-service.module';
@@ -65,6 +66,7 @@ import { MailModule } from './shared/mail/mail.module';
     ServiceModule,
     JobLocationModule,
     JobCategoryModule,
+    JobPostModule,
   ],
   controllers: [AppController],
   providers: [AppService],
