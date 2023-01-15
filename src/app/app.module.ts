@@ -13,6 +13,7 @@ import { EducationFieldModule } from './features/education-field/education-field
 import { EducationLevelModule } from './features/education-level/education-level.module';
 import { EducationPlaceModule } from './features/education-place/education-place.module';
 import { InstructorModule } from './features/instructor/instructor.module';
+import { JobLocationModule } from './features/job-location/job-location.module';
 import { ServiceModule } from './features/service/service.module';
 import { StaffModule } from './features/staff/staff.module';
 import { SubServiceModule } from './features/sub-service/sub-service.module';
@@ -61,6 +62,7 @@ import { MailModule } from './shared/mail/mail.module';
     ContactUsModule,
     SubServiceModule,
     ServiceModule,
+    JobLocationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

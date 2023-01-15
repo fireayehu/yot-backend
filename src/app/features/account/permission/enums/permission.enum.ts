@@ -85,4 +85,12 @@ export enum PermissionType {
   SERVICE_READ = 'read_service',
   SERVICE_UPDATE = 'update_service',
   SERVICE_DELETE = 'delete_service',
+
+  /**
+   *  JOB LOCATION
+   */
+  JOB_LOCATION_CREATE = 'create_joblocation',
+  JOB_LOCATION_READ = 'read_joblocation',
+  JOB_LOCATION_UPDATE = 'update_joblocation',
+  JOB_LOCATION_DELETE = 'delete_joblocation',
 }
