@@ -117,4 +117,12 @@ export enum PermissionType {
   TAG_READ = 'read_tag',
   TAG_UPDATE = 'update_tag',
   TAG_DELETE = 'delete_tag',
+
+  /**
+   *  CATEGORY
+   */
+  CATEGORY_CREATE = 'create_category',
+  CATEGORY_READ = 'read_category',
+  CATEGORY_UPDATE = 'update_category',
+  CATEGORY_DELETE = 'delete_category',
 }

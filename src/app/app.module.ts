@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './features/account/auth/auth.module';
 import { PermissionModule } from './features/account/permission/permission.module';
 import { RoleModule } from './features/account/role/role.module';
+import { CategoryModule } from './features/category/category.module';
 import { ContactUsModule } from './features/contact-us/contact-us.module';
 import { DataLookupModule } from './features/data-lookup/data-lookup.module';
 import { EducationFieldModule } from './features/education-field/education-field.module';
@@ -69,6 +70,7 @@ import { MailModule } from './shared/mail/mail.module';
     JobCategoryModule,
     JobPostModule,
     TagModule,
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
