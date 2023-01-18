@@ -34,7 +34,7 @@ export class JobApplicationController {
 
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.SUB_SERVICE_READ),
+    permissions.includes(PermissionType.JOB_APPLICATION_READ),
   )
   @UseGuards(JwtAuthGuard)
   @Get()
@@ -52,7 +52,7 @@ export class JobApplicationController {
 
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.SUB_SERVICE_READ),
+    permissions.includes(PermissionType.JOB_APPLICATION_READ),
   )
   @UseGuards(JwtAuthGuard)
   @Get(':id')
@@ -63,7 +63,7 @@ export class JobApplicationController {
   @UseInterceptors(FileInterceptor('resume'))
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.SUB_SERVICE_CREATE),
+    permissions.includes(PermissionType.JOB_APPLICATION_CREATE),
   )
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -80,7 +80,7 @@ export class JobApplicationController {
   @UseInterceptors(FileInterceptor('resume'))
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.SUB_SERVICE_UPDATE),
+    permissions.includes(PermissionType.JOB_APPLICATION_UPDATE),
   )
   @UseGuards(JwtAuthGuard)
   @Patch(':id')

@@ -133,4 +133,12 @@ export enum PermissionType {
   LANGUAGE_READ = 'read_language',
   LANGUAGE_UPDATE = 'update_language',
   LANGUAGE_DELETE = 'delete_language',
+
+  /**
+   *  JOB APPLICATION
+   */
+  JOB_APPLICATION_CREATE = 'create_jobapplication',
+  JOB_APPLICATION_READ = 'read_jobapplication',
+  JOB_APPLICATION_UPDATE = 'update_jobapplication',
+  JOB_APPLICATION_DELETE = 'delete_jobapplication',
 }
