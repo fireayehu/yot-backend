@@ -125,4 +125,12 @@ export enum PermissionType {
   CATEGORY_READ = 'read_category',
   CATEGORY_UPDATE = 'update_category',
   CATEGORY_DELETE = 'delete_category',
+
+  /**
+   *  LANGUAGE
+   */
+  LANGUAGE_CREATE = 'create_language',
+  LANGUAGE_READ = 'read_language',
+  LANGUAGE_UPDATE = 'update_language',
+  LANGUAGE_DELETE = 'delete_language',
 }

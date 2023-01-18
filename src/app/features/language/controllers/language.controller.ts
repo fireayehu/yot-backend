@@ -31,7 +31,7 @@ export class LanguageController {
 
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.TAG_READ),
+    permissions.includes(PermissionType.LANGUAGE_READ),
   )
   @UseGuards(JwtAuthGuard)
   @Get()
@@ -45,7 +45,7 @@ export class LanguageController {
 
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.TAG_READ),
+    permissions.includes(PermissionType.LANGUAGE_READ),
   )
   @UseGuards(JwtAuthGuard)
   @Get(':id')
@@ -55,7 +55,7 @@ export class LanguageController {
 
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.TAG_CREATE),
+    permissions.includes(PermissionType.LANGUAGE_CREATE),
   )
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -65,7 +65,7 @@ export class LanguageController {
 
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
-    permissions.includes(PermissionType.TAG_UPDATE),
+    permissions.includes(PermissionType.LANGUAGE_UPDATE),
   )
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
