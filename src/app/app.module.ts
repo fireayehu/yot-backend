@@ -14,6 +14,7 @@ import { EducationFieldModule } from './features/education-field/education-field
 import { EducationLevelModule } from './features/education-level/education-level.module';
 import { EducationPlaceModule } from './features/education-place/education-place.module';
 import { InstructorModule } from './features/instructor/instructor.module';
+import { JobApplicationModule } from './features/job-application/job-application.module';
 import { JobCategoryModule } from './features/job-category/job-category.module';
 import { JobLocationModule } from './features/job-location/job-location.module';
 import { JobPostModule } from './features/job-post/job-post.module';
@@ -70,6 +71,7 @@ import { MailModule } from './shared/mail/mail.module';
     JobLocationModule,
     JobCategoryModule,
     JobPostModule,
+    JobApplicationModule,
     TagModule,
     CategoryModule,
     LanguageModule,

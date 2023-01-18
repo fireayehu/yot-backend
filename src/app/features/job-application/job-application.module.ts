@@ -6,14 +6,15 @@ import { v4 as uuidv4 } from 'uuid';
 import { MulterModule } from '@nestjs/platform-express';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { S3Client } from '@aws-sdk/client-s3';
-import { SubService } from 'src/app/entities/sub-service.entity';
-import { SubServiceController } from './controllers/sub-service.controller';
-import { SubServiceService } from './services/sub-service.service';
-import { SubServiceFilter } from './filters/sub-service.filter';
+import { JobApplication } from 'src/app/entities/job-application.entity';
+import { JobApplicationController } from './controllers/job-application.controller';
+import { JobApplicationService } from './services/job-application.service';
+import { JobApplicationFilter } from './filters/job-application.filter';
+import { DataLookup } from 'src/app/entities/data-lookup.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([SubService]),
+    TypeOrmModule.forFeature([JobApplication, DataLookup]),
     MulterModule.registerAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
@@ -34,10 +35,7 @@ import { SubServiceFilter } from './filters/sub-service.filter';
             contentType: MulterS3.AUTO_CONTENT_TYPE,
             bucket: configService.get<string>('S3_BUCKET') as string,
             key: function (_, file, cb) {
-              cb(
-                null,
-                `sub-service/${uuidv4()}${path.extname(file.originalname)}`,
-              );
+              cb(null, `resume/${uuidv4()}${path.extname(file.originalname)}`);
             },
           }),
         };
@@ -45,7 +43,7 @@ import { SubServiceFilter } from './filters/sub-service.filter';
       inject: [ConfigService],
     }),
   ],
-  controllers: [SubServiceController],
-  providers: [SubServiceService, SubServiceFilter],
+  controllers: [JobApplicationController],
+  providers: [JobApplicationService, JobApplicationFilter],
 })
-export class SubServiceModule {}
+export class JobApplicationModule {}
