@@ -6,7 +6,6 @@ import { CourseLanguage } from './course-language.entity';
 import { CourseTag } from './course-tag.entitiy';
 import { Prerequisite } from './prerequisite.entity';
 import { Session } from './session.entity';
-import { User } from './user.entity';
 
 @Entity()
 export class Course extends Abstract {
@@ -66,9 +65,6 @@ export class Course extends Abstract {
 
   @ManyToOne(() => Category)
   category: Category;
-
-  @ManyToOne(() => User)
-  instructor: User;
 
   @OneToMany(() => CourseLanguage, (language) => language.course)
   languages: CourseLanguage[];

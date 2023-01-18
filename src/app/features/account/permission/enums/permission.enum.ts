@@ -141,4 +141,12 @@ export enum PermissionType {
   JOB_APPLICATION_READ = 'read_jobapplication',
   JOB_APPLICATION_UPDATE = 'update_jobapplication',
   JOB_APPLICATION_DELETE = 'delete_jobapplication',
+
+  /**
+   *  COURSE
+   */
+  COURSE_CREATE = 'create_course',
+  COURSE_READ = 'read_course',
+  COURSE_UPDATE = 'update_course',
+  COURSE_DELETE = 'delete_course',
 }

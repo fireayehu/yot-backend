@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { Abstract } from './abstract.entity';
 import { Course } from './course.entity';
+import { User } from './user.entity';
 
 @Entity()
 export class Session extends Abstract {
@@ -29,4 +30,7 @@ export class Session extends Abstract {
 
   @ManyToOne(() => Course)
   course: Course;
+
+  @ManyToOne(() => User)
+  instructor: User;
 }
