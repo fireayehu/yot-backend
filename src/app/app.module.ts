@@ -9,6 +9,7 @@ import { PermissionModule } from './features/account/permission/permission.modul
 import { RoleModule } from './features/account/role/role.module';
 import { CategoryModule } from './features/category/category.module';
 import { ContactUsModule } from './features/contact-us/contact-us.module';
+import { CourseDiscountModule } from './features/course-discount/course-discount.module';
 import { CourseModule } from './features/course/course.module';
 import { DataLookupModule } from './features/data-lookup/data-lookup.module';
 import { EducationFieldModule } from './features/education-field/education-field.module';
@@ -77,6 +78,7 @@ import { MailModule } from './shared/mail/mail.module';
     CategoryModule,
     LanguageModule,
     CourseModule,
+    CourseDiscountModule,
   ],
   controllers: [AppController],
   providers: [AppService],

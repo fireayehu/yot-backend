@@ -149,4 +149,12 @@ export enum PermissionType {
   COURSE_READ = 'read_course',
   COURSE_UPDATE = 'update_course',
   COURSE_DELETE = 'delete_course',
+
+  /**
+   *  COURSE DISCOUNT
+   */
+  COURSE_DISCOUNT_CREATE = 'create_coursediscount',
+  COURSE_DISCOUNT_READ = 'read_coursediscount',
+  COURSE_DISCOUNT_UPDATE = 'update_coursediscount',
+  COURSE_DISCOUNT_DELETE = 'delete_coursediscount',
 }
