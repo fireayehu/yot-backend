@@ -205,4 +205,12 @@ export enum PermissionType {
   LESSON_READ = 'read_lesson',
   LESSON_UPDATE = 'update_lesson',
   LESSON_DELETE = 'delete_lesson',
+
+  /**
+   * BLOG CATEGORY
+   */
+  BLOG_CATEGORY_CREATE = 'create_blogcategory',
+  BLOG_CATEGORY_READ = 'read_blogcategory',
+  BLOG_CATEGORY_UPDATE = 'update_blogcategory',
+  BLOG_CATEGORY_DELETE = 'delete_blogcategory',
 }

@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './features/account/auth/auth.module';
 import { PermissionModule } from './features/account/permission/permission.module';
 import { RoleModule } from './features/account/role/role.module';
+import { BlogCategoryModule } from './features/blog-category/blog-category.module';
 import { CategoryModule } from './features/category/category.module';
 import { ContactUsModule } from './features/contact-us/contact-us.module';
 import { CourseDiscountModule } from './features/course-discount/course-discount.module';
@@ -91,6 +92,7 @@ import { MailModule } from './shared/mail/mail.module';
     ModuleModule,
     SectionModule,
     LessonModule,
+    BlogCategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
