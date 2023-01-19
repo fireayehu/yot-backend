@@ -197,4 +197,12 @@ export enum PermissionType {
   SECTION_READ = 'read_section',
   SECTION_UPDATE = 'update_section',
   SECTION_DELETE = 'delete_section',
+
+  /**
+   * LESSON
+   */
+  LESSON_CREATE = 'create_lesson',
+  LESSON_READ = 'read_lesson',
+  LESSON_UPDATE = 'update_lesson',
+  LESSON_DELETE = 'delete_lesson',
 }

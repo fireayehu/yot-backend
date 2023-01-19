@@ -4,6 +4,7 @@ import { Abstract } from './abstract.entity';
 import { Category } from './category.entity';
 import { CourseLanguage } from './course-language.entity';
 import { CourseTag } from './course-tag.entitiy';
+import { Module } from './module.entity';
 import { Prerequisite } from './prerequisite.entity';
 import { Session } from './session.entity';
 
@@ -77,4 +78,7 @@ export class Course extends Abstract {
 
   @OneToMany(() => Session, (session) => session.course)
   sessions: Session[];
+
+  @OneToMany(() => Module, (module) => module.course)
+  modules: Module[];
 }

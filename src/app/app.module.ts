@@ -23,6 +23,7 @@ import { JobCategoryModule } from './features/job-category/job-category.module';
 import { JobLocationModule } from './features/job-location/job-location.module';
 import { JobPostModule } from './features/job-post/job-post.module';
 import { LanguageModule } from './features/language/language.module';
+import { LessonModule } from './features/lesson/lesson.module';
 import { ModuleModule } from './features/module/module.module';
 import { PrerequisiteModule } from './features/prerequisite/prerequisite.module';
 import { SectionModule } from './features/section/section.module';
@@ -89,6 +90,7 @@ import { MailModule } from './shared/mail/mail.module';
     PrerequisiteModule,
     ModuleModule,
     SectionModule,
+    LessonModule,
   ],
   controllers: [AppController],
   providers: [AppService],
