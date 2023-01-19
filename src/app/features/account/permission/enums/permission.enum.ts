@@ -157,4 +157,12 @@ export enum PermissionType {
   COURSE_DISCOUNT_READ = 'read_coursediscount',
   COURSE_DISCOUNT_UPDATE = 'update_coursediscount',
   COURSE_DISCOUNT_DELETE = 'delete_coursediscount',
+
+  /**
+   *  COURSE TAG
+   */
+  COURSE_TAG_CREATE = 'create_coursetag',
+  COURSE_TAG_READ = 'read_coursetag',
+  COURSE_TAG_UPDATE = 'update_coursetag',
+  COURSE_TAG_DELETE = 'delete_coursetag',
 }

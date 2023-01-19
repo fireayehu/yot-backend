@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { IFilter } from 'src/app/shared/interfaces/filter.interface';
-import { Raw } from 'typeorm';
 import { GetCourseDiscountsQueryDto } from '../dtos/get-course-discounts.dto';
 
 @Injectable()
