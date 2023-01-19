@@ -9,7 +9,7 @@ import { CourseTagService } from '../services/course-tag.service';
 
 @Controller('course-tags')
 export class CourseTagController {
-  constructor(private readonly courseDiscountService: CourseTagService) {}
+  constructor(private readonly courseTagService: CourseTagService) {}
 
   @UseGuards(PoliciesGuard)
   @CheckPolicies((permissions: string[]) =>
@@ -18,7 +18,7 @@ export class CourseTagController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Body() createCourseTagDto: CreateCourseTagDto) {
-    return this.courseDiscountService.create(createCourseTagDto);
+    return this.courseTagService.create(createCourseTagDto);
   }
 
   @UseGuards(PoliciesGuard)
@@ -28,6 +28,6 @@ export class CourseTagController {
   @UseGuards(JwtAuthGuard)
   @Delete()
   async delete(@Body() deleteCourseTagDto: DeleteCourseTagDto) {
-    return this.courseDiscountService.delete(deleteCourseTagDto);
+    return this.courseTagService.delete(deleteCourseTagDto);
   }
 }

@@ -165,4 +165,12 @@ export enum PermissionType {
   COURSE_TAG_READ = 'read_coursetag',
   COURSE_TAG_UPDATE = 'update_coursetag',
   COURSE_TAG_DELETE = 'delete_coursetag',
+
+  /**
+   *  COURSE LANGUAGE
+   */
+  COURSE_LANGUAGE_CREATE = 'create_courselanguage',
+  COURSE_LANGUAGE_READ = 'read_courselanguage',
+  COURSE_LANGUAGE_UPDATE = 'update_courselanguage',
+  COURSE_LANGUAGE_DELETE = 'delete_courselanguage',
 }
