@@ -25,6 +25,7 @@ import { JobPostModule } from './features/job-post/job-post.module';
 import { LanguageModule } from './features/language/language.module';
 import { ModuleModule } from './features/module/module.module';
 import { PrerequisiteModule } from './features/prerequisite/prerequisite.module';
+import { SectionModule } from './features/section/section.module';
 import { ServiceModule } from './features/service/service.module';
 import { StaffModule } from './features/staff/staff.module';
 import { SubServiceModule } from './features/sub-service/sub-service.module';
@@ -87,6 +88,7 @@ import { MailModule } from './shared/mail/mail.module';
     CourseLanguageModule,
     PrerequisiteModule,
     ModuleModule,
+    SectionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

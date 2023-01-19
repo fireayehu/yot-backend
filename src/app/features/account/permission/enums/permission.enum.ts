@@ -175,18 +175,26 @@ export enum PermissionType {
   COURSE_LANGUAGE_DELETE = 'delete_courselanguage',
 
   /**
-   *  MODULE
+   * PREREQUISITE
    */
-  PREREQUISITE_CREATE = 'create_module',
-  PREREQUISITE_READ = 'read_module',
-  PREREQUISITE_UPDATE = 'update_module',
-  PREREQUISITE_DELETE = 'delete_module',
+  PREREQUISITE_CREATE = 'create_prerequisite',
+  PREREQUISITE_READ = 'read_prerequisite',
+  PREREQUISITE_UPDATE = 'update_prerequisite',
+  PREREQUISITE_DELETE = 'delete_prerequisite',
 
   /**
-   *
+   * MODULE
    */
-  MODULE_CREATE = 'create_prerequisite',
-  MODULE_READ = 'read_prerequisite',
-  MODULE_UPDATE = 'update_prerequisite',
-  MODULE_DELETE = 'delete_prerequisite',
+  MODULE_CREATE = 'create_module',
+  MODULE_READ = 'read_module',
+  MODULE_UPDATE = 'update_module',
+  MODULE_DELETE = 'delete_module',
+
+  /**
+   * SECTION
+   */
+  SECTION_CREATE = 'create_section',
+  SECTION_READ = 'read_section',
+  SECTION_UPDATE = 'update_section',
+  SECTION_DELETE = 'delete_section',
 }
