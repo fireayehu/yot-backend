@@ -173,4 +173,12 @@ export enum PermissionType {
   COURSE_LANGUAGE_READ = 'read_courselanguage',
   COURSE_LANGUAGE_UPDATE = 'update_courselanguage',
   COURSE_LANGUAGE_DELETE = 'delete_courselanguage',
+
+  /**
+   *  COURSE PREREQUISITE
+   */
+  PREREQUISITE_CREATE = 'create_prerequisite',
+  PREREQUISITE_READ = 'read_prerequisite',
+  PREREQUISITE_UPDATE = 'update_prerequisite',
+  PREREQUISITE_DELETE = 'delete_prerequisite',
 }

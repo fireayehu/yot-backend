@@ -23,6 +23,7 @@ import { JobCategoryModule } from './features/job-category/job-category.module';
 import { JobLocationModule } from './features/job-location/job-location.module';
 import { JobPostModule } from './features/job-post/job-post.module';
 import { LanguageModule } from './features/language/language.module';
+import { PrerequisiteModule } from './features/prerequisite/prerequisite.module';
 import { ServiceModule } from './features/service/service.module';
 import { StaffModule } from './features/staff/staff.module';
 import { SubServiceModule } from './features/sub-service/sub-service.module';
@@ -83,6 +84,7 @@ import { MailModule } from './shared/mail/mail.module';
     CourseDiscountModule,
     CourseTagModule,
     CourseLanguageModule,
+    PrerequisiteModule,
   ],
   controllers: [AppController],
   providers: [AppService],
