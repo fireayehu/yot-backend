@@ -147,6 +147,10 @@ create_user, Y, Y, Y
 read_user, Y, Y, Y 
 update_user, Y, Y, Y 
 delete_user, Y, Y, Y 
+create_usersubservice, Y, Y, Y 
+read_usersubservice, Y, Y, Y 
+update_usersubservice, Y, Y, Y 
+delete_usersubservice, Y, Y, Y 
 create_staff, Y, Y, Y 
 read_staff, Y, Y, Y 
 update_staff, Y, Y, Y 

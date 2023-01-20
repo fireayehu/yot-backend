@@ -33,6 +33,7 @@ import { ServiceModule } from './features/service/service.module';
 import { StaffModule } from './features/staff/staff.module';
 import { SubServiceModule } from './features/sub-service/sub-service.module';
 import { TagModule } from './features/tag/tag.module';
+import { UserSubServiceModule } from './features/user-sub-service/user-sub-service.module';
 import { UserModule } from './features/user/user.module';
 import { MailModule } from './shared/mail/mail.module';
 
@@ -95,6 +96,7 @@ import { MailModule } from './shared/mail/mail.module';
     LessonModule,
     BlogCategoryModule,
     BlogPostModule,
+    UserSubServiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

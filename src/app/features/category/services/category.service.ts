@@ -50,8 +50,8 @@ export class CategoryService {
     };
   }
 
-  async create(createTagDto: CreateCategoryDto) {
-    const instance = this.categoryRepository.create(createTagDto);
+  async create(createCategoryDto: CreateCategoryDto) {
+    const instance = this.categoryRepository.create(createCategoryDto);
 
     const result = await this.categoryRepository.save(instance);
 
@@ -67,8 +67,8 @@ export class CategoryService {
     };
   }
 
-  async update(id: string, updateTagDto: UpdateCategoryDto) {
-    const result = await this.categoryRepository.update(id, updateTagDto);
+  async update(id: string, updateCategoryDto: UpdateCategoryDto) {
+    const result = await this.categoryRepository.update(id, updateCategoryDto);
 
     if (result.affected === 0) {
       throw new NotFoundException(`Category with id ${id} does not exist`);

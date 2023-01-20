@@ -221,4 +221,12 @@ export enum PermissionType {
   BLOG_POST_READ = 'read_blogpost',
   BLOG_POST_UPDATE = 'update_blogpost',
   BLOG_POST_DELETE = 'delete_blogpost',
+
+  /**
+   * USER SUB SERVICE
+   */
+  USER_SUB_SERVICE_CREATE = 'create_usersubservice',
+  USER_SUB_SERVICE_READ = 'read_usersubservice',
+  USER_SUB_SERVICE_UPDATE = 'update_usersubservice',
+  USER_SUB_SERVICE_DELETE = 'delete_usersubservice',
 }

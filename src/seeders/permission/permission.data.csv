@@ -147,6 +147,10 @@ Create, create_user, User
 Read, read_user, User
 Update, update_user, User
 Delete, delete_user, User
+Create, create_usersubservice, User Sub Service
+Read, read_usersubservice, User Sub Service
+Update, update_usersubservice, User Sub Service
+Delete, delete_usersubservice, User Sub Service
 Create, create_staff, Staff
 Read, read_staff, Staff
 Update, update_staff, Staff
