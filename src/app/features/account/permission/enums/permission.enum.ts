@@ -213,4 +213,12 @@ export enum PermissionType {
   BLOG_CATEGORY_READ = 'read_blogcategory',
   BLOG_CATEGORY_UPDATE = 'update_blogcategory',
   BLOG_CATEGORY_DELETE = 'delete_blogcategory',
+
+  /**
+   * BLOG POST
+   */
+  BLOG_POST_CREATE = 'create_blogpost',
+  BLOG_POST_READ = 'read_blogpost',
+  BLOG_POST_UPDATE = 'update_blogpost',
+  BLOG_POST_DELETE = 'delete_blogpost',
 }

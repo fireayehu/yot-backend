@@ -15,10 +15,8 @@ export class BlogPost extends Abstract {
   })
   description: string;
 
-  @Column({
-    nullable: true,
-  })
-  content: string;
+  @Column('jsonb', { nullable: false, default: {} })
+  content: object;
 
   @Column({
     nullable: true,
