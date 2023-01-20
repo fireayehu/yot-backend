@@ -229,4 +229,12 @@ export enum PermissionType {
   USER_SUB_SERVICE_READ = 'read_usersubservice',
   USER_SUB_SERVICE_UPDATE = 'update_usersubservice',
   USER_SUB_SERVICE_DELETE = 'delete_usersubservice',
+
+  /**
+   * SESSION
+   */
+  SESSION_CREATE = 'create_session',
+  SESSION_READ = 'read_session',
+  SESSION_UPDATE = 'update_session',
+  SESSION_DELETE = 'delete_session',
 }

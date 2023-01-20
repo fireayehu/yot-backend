@@ -30,6 +30,7 @@ import { ModuleModule } from './features/module/module.module';
 import { PrerequisiteModule } from './features/prerequisite/prerequisite.module';
 import { SectionModule } from './features/section/section.module';
 import { ServiceModule } from './features/service/service.module';
+import { SessionModule } from './features/session/session.module';
 import { StaffModule } from './features/staff/staff.module';
 import { SubServiceModule } from './features/sub-service/sub-service.module';
 import { TagModule } from './features/tag/tag.module';
@@ -97,6 +98,7 @@ import { MailModule } from './shared/mail/mail.module';
     BlogCategoryModule,
     BlogPostModule,
     UserSubServiceModule,
+    SessionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
