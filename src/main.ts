@@ -5,7 +5,9 @@ import { AppModule } from './app/app.module';
 import { TransformInterceptor } from './app/shared/interceptors/transform.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    cors: true,
+  });
   const configService = app.get(ConfigService);
 
   app.setGlobalPrefix('api');
